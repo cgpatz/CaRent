@@ -2,6 +2,8 @@ import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom"
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAuth } from "./hooks/useAuth";
 import { ROUTES } from "./constants/routePaths";
+   import Login from './pages/Login';
+   import Register from './pages/Register';
 
 function TestLogin() {
   const { login } = useAuth();
@@ -41,6 +43,8 @@ export default function App() {
 
       <Routes>
         <Route path={ROUTES.BROWSE} element={<h1>Browse (public)</h1>} />
+        <Route path={ROUTES.LOGIN} element={<Login />} />
+<Route path={ROUTES.REGISTER} element={<Register />} />
         <Route path={ROUTES.LOGIN} element={<TestLogin />} />
         <Route
           path={ROUTES.INBOX}

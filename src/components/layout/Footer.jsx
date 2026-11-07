@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FaCar } from 'react-icons/fa';
+import { ROUTES } from '../../constants/routePaths';
 import '../../styles/layout.css';
 
 export default function Footer() {
@@ -7,8 +8,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__brand"><FaCar size={18} /> CaRent Peer-to-Peer Auto Marketplace</div>
       <nav className="footer__links">
-        <Link to="/">Browse Cars</Link>
-        <Link to="/saved">Saved</Link>
+        <Link to={ROUTES.BROWSE}>Browse Cars</Link>
+        <Link to={ROUTES.SAVED}>Saved</Link>
         <Link to="/guidelines">Host Guidelines</Link>
         <Link to="/support">Support</Link>
       </nav>

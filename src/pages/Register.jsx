@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fi';
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
+import { ROUTES } from '../constants/routePaths';
 import heroImg from '../assets/register-hero.jpg';
 
 export default function Register() {
@@ -91,8 +92,8 @@ export default function Register() {
         <button className="auth-submit">Create account <FiArrowRight size={20} /></button>
       </form>
 
-      <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
-      <Link to="/" className="auth-continue">Continue browsing</Link>
+      <p className="auth-switch">Already have an account? <Link to={ROUTES.LOGIN}>Log in</Link></p>
+      <Link to={ROUTES.BROWSE} className="auth-continue">Continue browsing</Link>
     </AuthShell>
   );
 }

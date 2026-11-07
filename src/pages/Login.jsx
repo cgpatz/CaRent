@@ -4,6 +4,7 @@ import { FaCar } from 'react-icons/fa';
 import { FiArrowRight, FiMessageSquare, FiAlertCircle, FiShield } from 'react-icons/fi';
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
+import { ROUTES } from '../constants/routePaths';
 import heroImg from '../assets/login-hero.jpg';
 
 export default function Login() {
@@ -52,6 +53,7 @@ export default function Login() {
           name="password" label="Password" type="password"
           value={form.password} onChange={update}
         />
+        {/* TODO: replace with a ROUTES constant once the team adds forgot-password */}
         <Link to="/forgot-password" className="auth-forgot">Forgot password?</Link>
 
         {error && (
@@ -63,8 +65,8 @@ export default function Login() {
         </button>
       </form>
 
-      <p className="auth-switch">New to CaRent? <Link to="/register">Create account</Link></p>
-      <Link to="/" className="auth-continue">Continue browsing</Link>
+      <p className="auth-switch">New to CaRent? <Link to={ROUTES.REGISTER}>Create account</Link></p>
+      <Link to={ROUTES.BROWSE} className="auth-continue">Continue browsing</Link>
 
       <div className="auth-trust">
         <span><FiShield size={16} /> Insurance Included</span>

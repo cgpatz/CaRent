@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Car, User, Mail, Lock, ShieldCheck, ArrowRight, AlertCircle, Star } from 'lucide-react';
+import { FaCar, FaStar } from 'react-icons/fa';
+import {
+  FiUser,
+  FiMail,
+  FiLock,
+  FiShield,
+  FiArrowRight,
+  FiAlertCircle,
+} from 'react-icons/fi';
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import heroImg from '../assets/register-hero.jpg';
@@ -35,44 +43,44 @@ export default function Register() {
       image={heroImg}
       heroBottom={
         <>
-          <div className="auth-eyebrow"><Car size={16} /> Peer-to-peer mobility</div>
+          <div className="auth-eyebrow"><FaCar size={16} /> Peer-to-peer mobility</div>
           <h2>Turn your driveway into effortless income, or find your perfect trip.</h2>
           <div className="auth-rating">
-            <Star size={16} fill="#EEB01E" color="#EEB01E" />
+            <FaStar size={16} color="#EEB01E" />
             <strong>4.9/5</strong> <span>(18k+ trips)</span> • <span>Zero hidden subscriptions</span>
           </div>
         </>
       }
     >
-      <div className="auth-brand"><Car size={22} /> CaRent</div>
+      <div className="auth-brand"><FaCar size={22} /> CaRent</div>
       <h1 className="auth-title">Create your account</h1>
       <p className="auth-sub">It takes less than a minute.</p>
 
       <form onSubmit={handleSubmit} noValidate>
         <AuthField
-          name="name" label="Full name" icon={User} placeholder="Maria Santos"
+          name="name" label="Full name" icon={FiUser} placeholder="Maria Santos"
           value={form.name} onChange={update} onBlur={blur} error={shown('name')}
         />
         <AuthField
-          name="email" label="Email" icon={Mail} type="email" placeholder="maria@example.com"
+          name="email" label="Email" icon={FiMail} type="email" placeholder="maria@example.com"
           value={form.email} onChange={update} onBlur={blur}
           error={shown('email')} status={shown('email') ? 'Invalid format' : ''}
         />
         <AuthField
-          name="password" label="Password" icon={Lock} type="password"
+          name="password" label="Password" icon={FiLock} type="password"
           value={form.password} onChange={update} onBlur={blur}
           hint="At least 6 characters"
           error={shown('password')} status={shown('password') ? 'Invalid' : ''}
         />
         <AuthField
-          name="confirm" label="Confirm password" icon={ShieldCheck} type="password"
+          name="confirm" label="Confirm password" icon={FiShield} type="password"
           value={form.confirm} onChange={update} onBlur={blur}
           error={shown('confirm')} status={shown('confirm') ? 'Mismatch' : ''}
         />
 
         {submitted && hasErrors && (
           <div className="auth-alert" role="alert">
-            <AlertCircle size={18} /> Please fix the errors above.
+            <FiAlertCircle size={18} /> Please fix the errors above.
           </div>
         )}
 
@@ -80,7 +88,7 @@ export default function Register() {
           By selecting Create account, you confirm that you agree to CaRent's Terms of Service and Privacy Policy.
         </p>
 
-        <button className="auth-submit">Create account <ArrowRight size={20} /></button>
+        <button className="auth-submit">Create account <FiArrowRight size={20} /></button>
       </form>
 
       <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>

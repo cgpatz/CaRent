@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import { FiEye, FiEyeOff, FiCheckCircle } from 'react-icons/fi';
 
 export default function AuthField({
   name, label, icon: Icon, type = 'text', value, onChange, onBlur,
@@ -34,13 +34,13 @@ export default function AuthField({
             onClick={() => setShow((s) => !s)}
             aria-label={show ? 'Hide password' : 'Show password'}
           >
-            {show ? <EyeOff size={18} /> : <Eye size={18} />}
+            {show ? <FiEyeOff size={18} /> : <FiEye size={18} />}
           </button>
         )}
       </div>
 
       {hint && (
-        <p className="field__hint"><CheckCircle2 size={14} /> {hint}</p>
+        <p className="field__hint"><FiCheckCircle size={14} /> {hint}</p>
       )}
       {error && <p className="field__error">{error}</p>}
     </div>

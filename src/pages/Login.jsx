@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Car, ArrowRight, MessageSquare, AlertCircle, ShieldCheck } from 'lucide-react';
+import { FaCar } from 'react-icons/fa';
+import { FiArrowRight, FiMessageSquare, FiAlertCircle, FiShield } from 'react-icons/fi';
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import heroImg from '../assets/login-hero.jpg';
@@ -33,12 +34,12 @@ export default function Login() {
       image={heroImg}
       heroTop={<span className="auth-pill">Peer-to-peer mobility</span>}
     >
-      <div className="auth-brand"><Car size={36} /> CaRent</div>
+      <div className="auth-brand"><FaCar size={36} /> CaRent</div>
       <h1 className="auth-title">Welcome back</h1>
       <p className="auth-sub">Log in to message owners and post your car.</p>
 
       {notice && (
-        <div className="auth-notice"><MessageSquare size={18} /> {notice}</div>
+        <div className="auth-notice"><FiMessageSquare size={18} /> {notice}</div>
       )}
 
       <form onSubmit={handleSubmit} noValidate>
@@ -54,11 +55,11 @@ export default function Login() {
         <Link to="/forgot-password" className="auth-forgot">Forgot password?</Link>
 
         {error && (
-          <div className="auth-alert" role="alert"><AlertCircle size={18} /> {error}</div>
+          <div className="auth-alert" role="alert"><FiAlertCircle size={18} /> {error}</div>
         )}
 
         <button className="auth-submit" disabled={loading}>
-          {loading ? 'Logging in…' : <>Log in <ArrowRight size={20} /></>}
+          {loading ? 'Logging in…' : <>Log in <FiArrowRight size={20} /></>}
         </button>
       </form>
 
@@ -66,8 +67,8 @@ export default function Login() {
       <Link to="/" className="auth-continue">Continue browsing</Link>
 
       <div className="auth-trust">
-        <span><ShieldCheck size={16} /> Insurance Included</span>
-        <span><ShieldCheck size={16} /> Host Protected</span>
+        <span><FiShield size={16} /> Insurance Included</span>
+        <span><FiShield size={16} /> Host Protected</span>
       </div>
     </AuthShell>
   );

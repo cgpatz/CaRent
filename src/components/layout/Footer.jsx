@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Car } from 'lucide-react';
+import { FaCar } from 'react-icons/fa';
 import '../../styles/layout.css';
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__brand"><Car size={18} /> CaRent Peer-to-Peer Auto Marketplace</div>
+      <div className="footer__brand"><FaCar size={18} /> CaRent Peer-to-Peer Auto Marketplace</div>
       <nav className="footer__links">
         <Link to="/">Browse Cars</Link>
         <Link to="/saved">Saved</Link>

@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Car, User, Mail, Lock, ShieldCheck, ArrowRight, AlertCircle, Star } from 'lucide-react';
+import { ROUTES } from "../constants/routePaths";
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import heroImg from '../assets/register-hero.jpg';
 
 export default function Register() {
+  const location = useLocation();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -83,8 +85,8 @@ export default function Register() {
         <button className="auth-submit">Create account <ArrowRight size={20} /></button>
       </form>
 
-      <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
-      <Link to="/" className="auth-continue">Continue browsing</Link>
+      <p className="auth-switch">Already have an account? <Link to={ROUTES.LOGIN} state={location.state}>Log in</Link></p>
+      <Link to={ROUTES.BROWSE} className="auth-continue">Continue browsing</Link>
     </AuthShell>
   );
 }

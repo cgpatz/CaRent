@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Car, ArrowRight, MessageSquare, AlertCircle, ShieldCheck } from 'lucide-react';
+import { ROUTES } from "../constants/routePaths";
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import heroImg from '../assets/login-hero.jpg';
@@ -62,9 +63,7 @@ export default function Login() {
         </button>
       </form>
 
-      <p className="auth-switch">New to CaRent? <Link to="/register">Create account</Link></p>
-      <Link to="/" className="auth-continue">Continue browsing</Link>
-
+      <p className="auth-switch">New to CaRent? <Link to={ROUTES.REGISTER} state={location.state}>Create account</Link></p>
       <div className="auth-trust">
         <span><ShieldCheck size={16} /> Insurance Included</span>
         <span><ShieldCheck size={16} /> Host Protected</span>

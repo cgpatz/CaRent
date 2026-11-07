@@ -6,16 +6,20 @@ import { useAuth } from "../hooks/useAuth";
 import { ROUTES } from "../constants/routePaths";
 import Spinner from "../components/common/Spinner/Spinner";
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children, message = "Please log in to continue." }) {
   const { isLoggedIn, loading } = useAuth();
   const location = useLocation();
 
-  // Wait for Firebase to check the saved session.
   if (loading) return <Spinner />;
 
-  // Guest: go to Login and remember the page they wanted
   if (!isLoggedIn) {
-    return <Navigate to={ROUTES.LOGIN} state={{ from: location }} replace />;
+    return (
+      <Navigate
+        to={ROUTES.LOGIN}
+        state={{ from: location, message }}
+        replace
+      />
+    );
   }
 
   return children;

@@ -1,29 +1,21 @@
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
-import { useAuth } from "./hooks/useAuth";
+import Navbar from "./components/layout/Navbar";
+import LoginPromptProvider from "./context/LoginPromptProvider";
 import { ROUTES } from "./constants/routePaths";
 
+const HIDE_NAVBAR_ON = [ROUTES.LOGIN, ROUTES.REGISTER];
+
 export default function App() {
-  const { user, logout } = useAuth();
+  const { pathname } = useLocation();
+  const showNavbar = !HIDE_NAVBAR_ON.includes(pathname);
 
   return (
-    <div>
-      {/* TEMP nav for testing. Replace with <Navbar /> from components/layout. */}
-      <nav>
-        <Link to={ROUTES.BROWSE}>Browse</Link> |{" "}
-        <Link to={ROUTES.INBOX}>Inbox</Link> |{" "}
-        <Link to={ROUTES.CREATE_LISTING}>Create listing</Link> |{" "}
-        {user ? (
-          <button onClick={logout}>Logout ({user.name})</button>
-        ) : (
-          <>
-            <Link to={ROUTES.LOGIN}>Log in</Link> |{" "}
-            <Link to={ROUTES.REGISTER}>Register</Link>
-          </>
-        )}
-      </nav>
-
-      <AppRouter />
-    </div>
+    <LoginPromptProvider>
+      <div>
+        {showNavbar && <Navbar />}
+        <AppRouter />
+      </div>
+    </LoginPromptProvider>
   );
 }

@@ -1,14 +1,13 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Outlet, Link, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import { ROUTES } from "../constants/routePaths";
 import GuestOnlyRoute from "./GuestOnlyRoute";
-
+import { ROUTES } from "../constants/routePaths";
 
 // Built pages (adjust the paths to match your folders)
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-// Temporary stand-in. 
+// Temporary stand-in.
 function Placeholder({ name }) {
   return <h1>{name} (coming soon)</h1>;
 }
@@ -42,20 +41,22 @@ function GuestOnly() {
 export default function AppRouter() {
   return (
     <Routes>
-      {/* Public: guests can see these */}
-      <Route path={ROUTES.BROWSE} element={<Placeholder name="Browse" />} />
-      <Route path={ROUTES.LISTING} element={<Placeholder name="Listing detail" />} />
+      {/* First page visitors see: send "/" to Browse */}
+      {ROUTES.BROWSE !== "/" && (
+        <Route path="/" element={<Navigate to={ROUTES.BROWSE} replace />} />
+      )}
+
       {/* Public: guests can see these */}
       <Route path={ROUTES.BROWSE} element={<Placeholder name="Browse" />} />
       <Route path={ROUTES.LISTING} element={<Placeholder name="Listing detail" />} />
 
       {/* Guests only: logged-in users get redirected away */}
       <Route element={<GuestOnly />}>
-      <Route path={ROUTES.LOGIN} element={<Login />} />
-      <Route path={ROUTES.REGISTER} element={<Register />} />
-</Route>
+        <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route path={ROUTES.REGISTER} element={<Register />} />
+      </Route>
 
-        {/* Logged-in users only: guests get redirected away */}
+      {/* Logged-in users only: guests get redirected away */}
       <Route element={<RequireLogin />}>
         <Route path={ROUTES.CREATE_LISTING} element={<Placeholder name="Create listing" />} />
         <Route path={ROUTES.EDIT_LISTING} element={<Placeholder name="Edit listing" />} />

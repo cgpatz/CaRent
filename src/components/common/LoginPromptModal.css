@@ -1,0 +1,111 @@
+.lp-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(17, 24, 39, 0.55);
+}
+
+.lp-modal {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 36px 28px 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.lp-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.lp-close:hover {
+  background: #f6f3ec;
+}
+
+.lp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: #fdeee8;
+  color: #e5400f;
+}
+
+.lp-modal h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: #1f2937;
+}
+
+.lp-message {
+  margin: 0 0 22px;
+  color: #6b7280;
+}
+
+.lp-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-btn {
+  display: block;
+  padding: 13px 18px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.lp-btn-solid {
+  background: #eeb01e;
+  color: #1f2937;
+}
+
+.lp-btn-solid:hover {
+  background: #e0a317;
+}
+
+.lp-btn-outline {
+  background: transparent;
+  color: #1f2937;
+  border-color: #e5e0d3;
+}
+
+.lp-btn-outline:hover {
+  background: #f6f3ec;
+}
+
+.lp-later {
+  margin-top: 14px;
+  padding: 6px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lp-later:hover {
+  color: #1f2937;
+}

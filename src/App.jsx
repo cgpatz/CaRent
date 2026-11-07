@@ -1,6 +1,23 @@
-import { auth, db } from "./config/firebase";
+import { useAuth } from "./hooks/useAuth";
 
 export default function App() {
-  console.log("Project:", auth.app.options.projectId, db.type);
-  return <h1>CaRent</h1>;
+  const { user, loading, login, logout } = useAuth();
+
+  if (loading) return <p>Loading...</p>;
+
+  return (
+    <div>
+      <p>{user ? `Logged in as ${user.name} (${user.email})` : "Not logged in"}</p>
+      <button
+        onClick={() =>
+          login({ email: "test@example.com", password: "123456" }).catch((e) =>
+            alert(e.message)
+          )
+        }
+      >
+        Login
+      </button>
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
 }

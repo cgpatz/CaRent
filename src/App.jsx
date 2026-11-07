@@ -1,3 +1,6 @@
+import { auth, db } from "./config/firebase";
+
 export default function App() {
-  return <h1>RentList</h1>;
+  console.log("Project:", auth.app.options.projectId, db.type);
+  return <h1>CaRent</h1>;
 }

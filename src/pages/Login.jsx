@@ -5,12 +5,14 @@ import { FiArrowRight, FiMessageSquare, FiAlertCircle, FiShield } from 'react-ic
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import { ROUTES } from '../constants/routePaths';
+import { validateLoginForm } from '../utils/validators';
 import heroImg from '../assets/login-hero.jpg';
 
 export default function Login() {
   const location = useLocation();
   const notice = location.state?.message; // e.g. "Log in to message this owner."
   const [form, setForm] = useState({ email: '', password: '' });
+  const [fieldErrors, setFieldErrors] = useState({});
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -19,9 +21,13 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    const errors = validateLoginForm(form);
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
     setLoading(true);
     try {
-      // TODO: call your Firebase login function here
+      // TODO: call the login function from useAuth (Firebase) here
     } catch {
       setError('Incorrect email or password.');
     } finally {
@@ -48,10 +54,12 @@ export default function Login() {
           name="email" label="Email" type="email" status="Required"
           placeholder="e.g. maria@example.com"
           value={form.email} onChange={update}
+          error={fieldErrors.email}
         />
         <AuthField
           name="password" label="Password" type="password"
           value={form.password} onChange={update}
+          error={fieldErrors.password}
         />
         {/* TODO: replace with a ROUTES constant once the team adds forgot-password */}
         <Link to="/forgot-password" className="auth-forgot">Forgot password?</Link>

@@ -12,30 +12,27 @@ import {
 import AuthShell from '../components/auth/AuthShell';
 import AuthField from '../components/auth/AuthField';
 import { ROUTES } from '../constants/routePaths';
+import { validateRegisterForm } from '../utils/validators';
 import heroImg from '../assets/register-hero.jpg';
 
 export default function Register() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   const blur = (e) => setTouched((t) => ({ ...t, [e.target.name]: true }));
 
-  const errors = {
-    name: !form.name.trim() ? 'Please enter your full name' : '',
-    email: !/^\S+@\S+\.\S+$/.test(form.email) ? 'Please enter a valid email address' : '',
-    password: form.password.length < 6 ? 'Password must be at least 6 characters' : '',
-    confirm: form.confirm !== form.password ? 'Passwords do not match' : '',
-  };
-  const shown = (k) => ((touched[k] || submitted) ? errors[k] : '');
-  const hasErrors = Object.values(errors).some(Boolean);
+  // Only fields with a problem appear in this object
+  const errors = validateRegisterForm(form);
+  const shown = (k) => ((touched[k] || submitted) ? errors[k] || '' : '');
+  const hasErrors = Object.keys(errors).length > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
     if (hasErrors) return;
-    // TODO: Firebase createUserWithEmailAndPassword + save the full name
+    // TODO: call the register function from useAuth (Firebase) here
   };
 
   return (
@@ -74,9 +71,9 @@ export default function Register() {
           error={shown('password')} status={shown('password') ? 'Invalid' : ''}
         />
         <AuthField
-          name="confirm" label="Confirm password" icon={FiShield} type="password"
-          value={form.confirm} onChange={update} onBlur={blur}
-          error={shown('confirm')} status={shown('confirm') ? 'Mismatch' : ''}
+          name="confirmPassword" label="Confirm password" icon={FiShield} type="password"
+          value={form.confirmPassword} onChange={update} onBlur={blur}
+          error={shown('confirmPassword')} status={shown('confirmPassword') ? 'Mismatch' : ''}
         />
 
         {submitted && hasErrors && (
